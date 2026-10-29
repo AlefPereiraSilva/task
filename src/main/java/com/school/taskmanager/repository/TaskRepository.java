@@ -1,4 +1,9 @@
-package src.main.java.com.school.taskmanager.repository;
+package com.school.taskmanager.repository;
 
-public class TaskRepository {
+import com.school.taskmanager.model.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
+public interface TaskRepository extends JpaRepository<Task, Long> {
+    Optional<Task> findByEmail(String email);
 }
