@@ -1,0 +1,16 @@
+.idea/
+*iml
+target/
+*.class
+/out/
+.vscode/
+.DS_STORE
+*.jar
+.settings/
+bin/
+.classpath
+.project
+*.db
+*.sqlite
+Thumbs.db
+Desktop.ini
