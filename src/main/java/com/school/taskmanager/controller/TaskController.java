@@ -39,7 +39,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public Task atualizar(@PathVariable Long id, @REquestBody TaskDTO taskdto) {
+    public Task atualizar(@PathVariable Long id, @RequestBody TaskDTO taskDTO) {
         Task task = new Task();
         task.setNome(taskDTO.getNome());
         task.setEmail(taskDTO.getEmail());
@@ -52,7 +52,7 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
-        return taskService.deletar(id);
+       taskService.deletar(id);
     }
 
     @GetMapping("/teste")

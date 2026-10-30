@@ -2,6 +2,7 @@ package com.school.taskmanager.service;
 
 import com.school.taskmanager.model.Task;
 import com.school.taskmanager.repository.TaskRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -9,9 +10,11 @@ import java.util.List;
 public class TaskService {
 
     private final TaskRepository taskRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     public List<Task> listarTodos() {
@@ -24,6 +27,9 @@ public class TaskService {
     }
 
     public Task salvar(Task task) {
+        String senhaCriptografada = passwordEncoder.encode(task.getSenha());
+        task.setSenha(senhaCriptografada);
+
         return taskRepository.save(task);
     }
 
@@ -34,7 +40,10 @@ public class TaskService {
         taskExistente.setEmail(taskAtualizada.getEmail());
         taskExistente.setTelefone(taskAtualizada.getTelefone());
         taskExistente.setDataNascimento(taskAtualizada.getDataNascimento());
-        taskExistente.setSenha(taskAtualizada.getSenha());
+
+        if(taskAtualizada.getSenha() != null && !taskAtualizada.getSenha().isEmpty()) {
+        taskExistente.setSenha(passwordEncoder.encode(taskAtualizada.getSenha()));
+        }
 
         return taskRepository.save(taskExistente);
     }
