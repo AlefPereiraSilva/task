@@ -1,3 +1,6 @@
+.mvn/
+mvnw
+mvnw.cmd
 .idea/
 *iml
 target/
@@ -9,8 +12,10 @@ target/
 .settings/
 bin/
 .classpath
+.factorypath
 .project
 *.db
 *.sqlite
 Thumbs.db
 Desktop.ini
+*.log

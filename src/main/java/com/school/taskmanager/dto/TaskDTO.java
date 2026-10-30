@@ -1,9 +1,14 @@
 package com.school.taskmanager.dto;
 
+import java.util.Date;
+
 public class TaskDTO {
     private String nome;
     private String email;
     private String mensagem;
+    private String telefone;
+    private Date dataNascimento;
+    private String senha;
 
     public TaskDTO() {}
 
@@ -21,10 +26,32 @@ public class TaskDTO {
         this.email = email;
     }
 
-    public String getmensagem() {
+    public String getMensagem() {
         return mensagem;
     }
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
+
+    public String getTelefone() {
+        return telefone;
+    }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
 }

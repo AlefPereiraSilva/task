@@ -18,15 +18,29 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    public Task buscarPorId(Long id) {
+        return taskRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Tarefa/Utilizador não encontrado com o ID: " + id));
+    }
+
     public Task salvar(Task task) {
         return taskRepository.save(task);
     }
 
-    public Task buscarPorId(Long id) {
-        return taskRepository.findById(id).orElse(null);
+    public Task atualizar(Long id, Task taskAtualizada) {
+        Task taskExistente = buscarPorId(id);
+
+        taskExistente.setNome(taskAtualizada.getNome());
+        taskExistente.setEmail(taskAtualizada.getEmail());
+        taskExistente.setTelefone(taskAtualizada.getTelefone());
+        taskExistente.setDataNascimento(taskAtualizada.getDataNascimento());
+        taskExistente.setSenha(taskAtualizada.getSenha());
+
+        return taskRepository.save(taskExistente);
     }
 
     public void deletar(Long id) {
-        taskRepository.deleteById(id);
+        Task task = buscarPorId(id);
+        taskRepository.delete(task);
     }
 }
